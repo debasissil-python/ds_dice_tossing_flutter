@@ -28,8 +28,15 @@ class DicePage extends StatefulWidget {
 }
 
 class _DicePageState extends State<DicePage> {
-  var lI = 1;
-  var rI = 1;
+  int lI = 1;
+  int rI = 1;
+
+  void clickDice() {
+    setState(() {
+      lI = (Random().nextInt(6) + 1);
+      rI = (Random().nextInt(6) + 1);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,25 +44,27 @@ class _DicePageState extends State<DicePage> {
       child: Row(
         children: [
           Expanded(
-            flex: 1,
-            child: TextButton(
-              onPressed: () {
-                setState(() {
-                  lI = Random().nextInt(6) + 1;
-                });
-              },
-              child: Image.asset('images/dice$lI.png'),
+            flex: 5,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextButton(
+                onPressed: () {
+                  clickDice();
+                },
+                child: Image.asset('images/dice$lI.png'),
+              ),
             ),
           ),
           Expanded(
-            flex: 1,
-            child: TextButton(
-              onPressed: () {
-                setState(() {
-                  rI = Random().nextInt(6) + 1;
-                });
-              },
-              child: Image.asset('images/dice$rI.png'),
+            flex: 5,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextButton(
+                onPressed: () {
+                  clickDice();
+                },
+                child: Image.asset('images/dice$rI.png'),
+              ),
             ),
           ),
         ],
